@@ -681,6 +681,8 @@ function renderAll() {
     0
   );
   log.textContent = `Showing ${filteredTodos.length} of ${todos.length} todos (${totalSubtasks} subtasks)`;
+
+  checkEmpty(filteredTodos);
 }
 
 function checkEmpty(list) {
@@ -695,7 +697,7 @@ function checkEmpty(list) {
       td.className = "px-4 py-4 text-white text-center italic";
       td.textContent = "No task";
       tr.appendChild(td);
-      tableBody.appendChild(tr); // ✅ don't wipe tableBody here
+      tableBody.appendChild(tr);
     }
   } else {
     if (placeholder) placeholder.remove();
