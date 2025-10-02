@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-[#552cb7] mt-8 flex justify-center items-center mx-auto">
+    <div id="container" class="border-2 border-white rounded-xl mt-16 p-4 max-w-6xl">
+        <div>
+            <h1 class="text-white text-center font-bold text-2xl mt-4">Todo List</h1>
+        </div>
+        <form id="todo-form" class="flex justify-between gap-x-2 mt-8">
+            <input id="todo" name="todo" type="text" placeholder="Add a todo..."
+                class="border-2 border-white rounded-lg p-2 px-4 text-white" />
+            <input id="date" name="date" type="date"
+                class="border-2 border-white rounded-lg p-2 px-4 text-white color-white" />
+            <button type="submit" class="border-2 border-white rounded-lg px-4 bg-[#fd05a0] text-white">＋</button>
+        </form>
+        <div class="flex justify-between mt-4">
+            <button class="bg-[#303a95] border-2 border-transparent rounded-md text-white p-2 px-4">Filter</button>
+            <button id="delete-all" class="bg-[#e20f44] border-2 rounded-lg text-white p-2 px-4">Delete All</button>
+        </div>
+        <div class="overflow-x-auto overflow-y-hidden rounded-lg border-2 border-white mt-4">
+            <table class="table-auto w-full border-collapse text-justify min-w-[700px]">
+                <thead>
+                    <tr class="text-white border-b-2 border-white">
+                        <th class="px-4 py-2 w-1/2 text-left">Task</th>
+                        <th class="px-4 py-2 whitespace-nowrap">Due Date</th>
+                        <th class="px-4 py-2 w-48">Status</th>
+                        <th class="px-4 py-2 whitespace-nowrap">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <!-- <tr> -->
+                    <!-- <td colspan="4" class="px-4 py-4 text-white text-center italic">No task</td> -->
+                    <!-- <td class="px-4 py-2">Ngoding</td>
+                        <td class="px-4 py-2">No due date</td>
+                        <td class="px-4 py-2">Completed</td>
+                        <td class="px-4 py-2">
+                            <div class="flex gap-2">
+                                <button class="bg-yellow-500 hover:bg-yellow-600 text-white p-2 rounded-lg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                                    </svg>
+                                </button>
+
+                                <button class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="m4.5 12.75 6 6 9-13.5" />
+                                    </svg>
+
+                                </button>
+
+                                <button class="bg-[#e20f44] hover:bg-red-600 text-white p-2 rounded-lg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </td> -->
+                    <!-- </tr> -->
+                </tbody>
+            </table>
+        </div>
+        <h2 id="log" class="text-white">Some logging</h2>
+    </div>
+
+    <script src="./js/script.js"></script>
+</body>
+
+</html>
