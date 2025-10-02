@@ -147,16 +147,27 @@ function enterEditMode(
   const originalTask = itemData.task;
   const originalDate = itemData.dueDate;
 
+  taskCell.className = "px-4 py-2 align-middle";
+  if (isSubtask) {
+    taskCell.className += " pl-12";
+  }
+
+  taskCell.innerHTML = "";
+  const wrapper = document.createElement("div");
+  wrapper.className = "flex items-center gap-2";
+
   const taskInput = document.createElement("input");
   taskInput.type = "text";
   taskInput.value = itemData.task;
   taskInput.className =
-    "border-2 border-white rounded-lg p-2 px-4 text-white bg-transparent w-full";
+    "flex-1 border-2 border-white rounded-lg p-2 px-4 text-white bg-transparent";
+
   if (isSubtask) {
     taskInput.className += " ml-8";
   }
   taskCell.innerHTML = "";
-  taskCell.appendChild(taskInput);
+  wrapper.appendChild(taskInput);
+  taskCell.appendChild(wrapper);
 
   const dateInput = document.createElement("input");
   dateInput.type = "date";
