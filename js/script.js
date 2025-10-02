@@ -687,20 +687,25 @@ function renderAll() {
 
 function checkEmpty(list) {
   const placeholder = tableBody.querySelector("tr[data-placeholder='true']");
+  if (placeholder) placeholder.remove();
 
   if (!list || list.length === 0) {
-    if (!placeholder) {
-      const tr = document.createElement("tr");
-      tr.dataset.placeholder = "true";
-      const td = document.createElement("td");
-      td.colSpan = 4;
-      td.className = "px-4 py-4 text-white text-center italic";
-      td.textContent = "No task";
-      tr.appendChild(td);
-      tableBody.appendChild(tr);
+    const tr = document.createElement("tr");
+    tr.dataset.placeholder = "true";
+    const td = document.createElement("td");
+    td.colSpan = 4;
+    td.className = "px-4 py-4 text-white text-center italic";
+
+    if (currentFilter === "Pending") {
+      td.textContent = "No pending tasks";
+    } else if (currentFilter === "Completed") {
+      td.textContent = "No completed tasks";
+    } else {
+      td.textContent = "No tasks";
     }
-  } else {
-    if (placeholder) placeholder.remove();
+
+    tr.appendChild(td);
+    tableBody.appendChild(tr);
   }
 }
 
