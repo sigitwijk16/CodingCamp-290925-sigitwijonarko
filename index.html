@@ -18,8 +18,12 @@
         <form id="todo-form" class="flex flex-col sm:flex-row justify-between gap-3 mt-8">
             <input id="todo" name="todo" type="text" placeholder="Add a todo..."
                 class="flex-1 border border-white rounded-lg p-2 px-4 text-white bg-transparent placeholder-gray-200" />
-            <input id="date" name="date" type="date"
-                class="border border-white rounded-lg p-2 px-4 text-white bg-transparent" />
+            <div class="relative">
+                <input id="date" name="date" type="date"
+                    class="border border-white rounded-lg p-2 px-4 text-white" />
+                <label id="fake-date" for="date" class="absolute left-3 top-2 text-gray-300 pointer-events-none">mm/dd/yyyy</label>
+            </div>
+
             <button type="submit"
                 class="border border-white rounded-lg px-4 py-2 bg-[#f72585] text-white font-bold hover:bg-pink-600 transition">
                 ＋
