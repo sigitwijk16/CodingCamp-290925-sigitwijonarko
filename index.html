@@ -10,18 +10,18 @@
 </head>
 
 <body class="bg-[#002366] min-h-screen flex justify-center items-start px-4 py-8">
-    <div id="container" class="border-2 border-white rounded-xl w-full max-w-5xl p-6 bg-opacity-80 backdrop-blur-sm">
+    <div id="container" class="border border-white rounded-xl w-full max-w-5xl p-6 bg-opacity-80 backdrop-blur-sm">
         <div>
             <h1 class="text-white text-center font-bold text-3xl sm:text-4xl">Todo List</h1>
         </div>
 
         <form id="todo-form" class="flex flex-col sm:flex-row justify-between gap-3 mt-8">
             <input id="todo" name="todo" type="text" placeholder="Add a todo..."
-                class="flex-1 border-2 border-white rounded-lg p-2 px-4 text-white bg-transparent placeholder-gray-200" />
+                class="flex-1 border border-white rounded-lg p-2 px-4 text-white bg-transparent placeholder-gray-200" />
             <input id="date" name="date" type="date"
-                class="border-2 border-white rounded-lg p-2 px-4 text-white bg-transparent" />
+                class="border border-white rounded-lg p-2 px-4 text-white bg-transparent" />
             <button type="submit"
-                class="border-2 border-white rounded-lg px-4 py-2 bg-[#f72585] text-white font-bold hover:bg-pink-600 transition">
+                class="border border-white rounded-lg px-4 py-2 bg-[#f72585] text-white font-bold hover:bg-pink-600 transition">
                 ＋
             </button>
         </form>
@@ -29,7 +29,7 @@
         <div class="flex flex-col sm:flex-row justify-between gap-3 mt-6">
             <div class="relative w-fit">
                 <select id="filter"
-                    class="appearance-none bg-[#303a95] border-2 border-[#303a95] rounded-lg text-white p-2 pr-8 pl-4 hover:bg-[#4361ee] hover:border-[#4361ee] transition">
+                    class="appearance-none bg-[#303a95] border border-[#303a95] rounded-lg text-white p-2 pr-8 pl-4 hover:bg-[#4361ee] hover:border-[#4361ee] transition">
                     <option value="all">All Status</option>
                     <option value="Pending">Pending</option>
                     <option value="Completed">Completed</option>
@@ -42,15 +42,15 @@
             </div>
 
             <button id="delete-all"
-                class="bg-[#e20f44] border-2 rounded-lg text-white p-2 px-4 hover:bg-red-700 transition">
+                class="bg-[#e20f44] border rounded-lg text-white p-2 px-4 hover:bg-red-700 transition">
                 Delete All
             </button>
         </div>
 
-        <div class="overflow-x-auto rounded-lg border-2 border-white mt-6">
+        <div class="overflow-x-auto rounded-lg border border-white mt-6">
             <table class="table-auto w-full min-w-[700px] border-collapse text-left">
                 <thead>
-                    <tr class="text-white border-b-2 border-white">
+                    <tr class="text-white border-b border-white">
                         <th class="px-4 py-2 w-1/2">Task</th>
                         <th class="px-4 py-2 whitespace-nowrap">Due Date</th>
                         <th class="px-4 py-2 w-40">Status</th>

@@ -156,7 +156,7 @@ function enterEditMode(
   taskInput.type = "text";
   taskInput.value = itemData.task;
   taskInput.className =
-    "flex-1 border-2 border-white rounded-lg p-2 px-4 text-white bg-transparent";
+    "flex-1 border border-white rounded-lg p-2 px-4 text-white bg-transparent";
 
   if (isSubtask) {
     taskInput.className += " ml-8";
@@ -168,7 +168,7 @@ function enterEditMode(
   const dateInput = document.createElement("input");
   dateInput.type = "date";
   dateInput.className =
-    "border-2 border-white rounded-lg p-2 px-4 text-white bg-transparent";
+    "border border-white rounded-lg p-2 px-4 text-white bg-transparent";
   if (itemData.dueDate) {
     const year = itemData.dueDate.getFullYear();
     const month = String(itemData.dueDate.getMonth() + 1).padStart(2, "0");
@@ -480,15 +480,15 @@ function toggleSubtaskForm(parentId) {
 
   form.innerHTML = `
     <input name="subtask" type="text" placeholder="Add subtask for ${truncatedTask}"
-      class="flex-1 border-2 border-white rounded-lg p-2 px-4 text-white bg-transparent placeholder-gray-200" />
+      class="flex-1 border border-white rounded-lg p-2 px-4 text-white bg-transparent placeholder-gray-200" />
     <input name="subtask-date" type="date"
-      class="border-2 border-white rounded-lg p-2 px-4 text-white bg-transparent" />
+      class="border border-white rounded-lg p-2 px-4 text-white bg-transparent" />
     <button type="submit"
-      class="border-2 border-white rounded-lg px-4 py-2 bg-[#f72585] text-white font-bold hover:bg-pink-600 transition">
+      class="border border-white rounded-lg px-4 py-2 bg-[#f72585] text-white font-bold hover:bg-pink-600 transition">
       ＋
     </button>
     <button type="button" onclick="this.closest('tr').remove(); activeSubtaskForm = null;"
-      class="border-2 border-white rounded-lg px-4 py-2 bg-gray-500 text-white hover:bg-gray-600 transition">
+      class="border border-white rounded-lg px-4 py-2 bg-gray-500 text-white hover:bg-gray-600 transition">
       Cancel
     </button>
   `;
