@@ -2,8 +2,15 @@ const todoForm = document.getElementById("todo-form");
 const log = document.getElementById("log");
 const tableBody = document.getElementById("table-body");
 const deleteAllBtn = document.getElementById("delete-all");
+const filterSelect = document.getElementById("filter");
 
 let todos = [];
+let currentFilter = "all";
+
+filterSelect.addEventListener("change", () => {
+  currentFilter = filterSelect.value;
+  renderAll();
+});
 
 window.addEventListener("DOMContentLoaded", () => {
   const savedTodos = localStorage.getItem("todos");
@@ -136,11 +143,18 @@ function updateCompleteBtn(btn, status) {
 
 function renderAll() {
   tableBody.innerHTML = "";
-  if (todos.length === 0) {
+  const filteredTodos =
+    currentFilter === "all"
+      ? todos
+      : todos.filter((t) => t.status === currentFilter);
+
+  if (filteredTodos.length === 0) {
     checkEmpty();
     return;
   }
-  todos.forEach(addTodoRow);
+
+  filteredTodos.forEach(addTodoRow);
+  log.textContent = `Showing ${filteredTodos.length} of ${todos.length} todos`;
 }
 
 function checkEmpty() {
