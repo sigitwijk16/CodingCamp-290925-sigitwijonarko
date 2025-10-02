@@ -27,12 +27,20 @@
         </form>
 
         <div class="flex flex-col sm:flex-row justify-between gap-3 mt-6">
-            <select id="filter"
-                class="bg-[#303a95] border-2 border-[#303a95] rounded-lg text-white p-2 px-4 hover:bg-[#4361ee] hover:border-[#4361ee] transition">
-                <option value="all">All Status</option>
-                <option value="Pending">Pending</option>
-                <option value="Completed">Completed</option>
-            </select>
+            <div class="relative w-fit">
+                <select id="filter"
+                    class="appearance-none bg-[#303a95] border-2 border-[#303a95] rounded-lg text-white p-2 pr-8 pl-4 hover:bg-[#4361ee] hover:border-[#4361ee] transition">
+                    <option value="all">All Status</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Completed">Completed</option>
+                </select>
+                <svg class="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 text-white pointer-events-none"
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+
+            </div>
+
             <button id="delete-all"
                 class="bg-[#e20f44] border-2 rounded-lg text-white p-2 px-4 hover:bg-red-700 transition">
                 Delete All
