@@ -481,7 +481,7 @@ function toggleSubtaskForm(parentId) {
       ＋
     </button>
     <button type="button" onclick="this.closest('tr').remove(); activeSubtaskForm = null;"
-      class="border-2 border-white rounded-lg px-4 py-2 bg-gray-500 text-white font-bold hover:bg-gray-600 transition">
+      class="border-2 border-white rounded-lg px-4 py-2 bg-gray-500 text-white hover:bg-gray-600 transition">
       Cancel
     </button>
   `;
