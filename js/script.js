@@ -488,7 +488,7 @@ function toggleSubtaskForm(parentId) {
     <input name="subtask-date" type="date"
       class="border-2 border-white rounded-lg p-2 px-4 text-white bg-transparent" />
     <button type="submit"
-      class="border-2 border-white rounded-lg px-4 py-2 bg-[#fd05a0] text-white font-bold hover:bg-pink-600 transition">
+      class="border-2 border-white rounded-lg px-4 py-2 bg-[#f72585] text-white font-bold hover:bg-pink-600 transition">
       ＋
     </button>
     <button type="button" onclick="this.closest('tr').remove(); activeSubtaskForm = null;"
