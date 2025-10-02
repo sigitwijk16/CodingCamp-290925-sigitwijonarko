@@ -42,7 +42,14 @@ todoForm.addEventListener("submit", (event) => {
   };
   todos.push(todoObj);
   saveTodos();
-  addTodoRow(todoObj);
+
+  if (currentFilter === "all" || todoObj.status === currentFilter) {
+    const placeholder = tableBody.querySelector("tr[data-placeholder='true']");
+    if (placeholder) placeholder.remove();
+
+    addTodoRow(todoObj);
+  }
+
   todoInput.value = "";
   dateInput.value = "";
 });
