@@ -19,7 +19,10 @@ window.addEventListener("DOMContentLoaded", () => {
     todos = JSON.parse(savedTodos).map((todo) => ({
       ...todo,
       dueDate: todo.dueDate ? new Date(todo.dueDate) : null,
-      subtasks: todo.subtasks || [],
+      subtasks: (todo.subtasks || []).map((subtask) => ({
+        ...subtask,
+        dueDate: subtask.dueDate ? new Date(subtask.dueDate) : null,
+      })),
     }));
   }
   renderAll();
@@ -71,7 +74,6 @@ function addTodoRow(todo) {
   const actionContainer = document.createElement("div");
   actionContainer.className = "flex gap-2";
 
-  // Add subtask button
   const addSubtaskBtn = document.createElement("button");
   addSubtaskBtn.className =
     "bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg";
@@ -529,9 +531,15 @@ function createSubtaskRow(subtask, parentId, parentTask) {
 
   const dueDate = document.createElement("td");
   dueDate.className = "px-4 py-2 whitespace-nowrap";
-  dueDate.textContent = subtask.dueDate
-    ? subtask.dueDate.toLocaleDateString()
-    : "No due date";
+  if (subtask.dueDate) {
+    const dateObj =
+      subtask.dueDate instanceof Date
+        ? subtask.dueDate
+        : new Date(subtask.dueDate);
+    dueDate.textContent = dateObj.toLocaleDateString();
+  } else {
+    dueDate.textContent = "No due date";
+  }
 
   const status = document.createElement("td");
   status.className = "px-4 py-2 status-cell";
