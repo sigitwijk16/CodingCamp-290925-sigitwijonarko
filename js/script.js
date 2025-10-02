@@ -670,7 +670,7 @@ function renderAll() {
       : todos.filter((t) => t.status === currentFilter);
 
   if (filteredTodos.length === 0) {
-    checkEmpty();
+    checkEmpty(filteredTodos);
     return;
   }
 
@@ -683,15 +683,10 @@ function renderAll() {
   log.textContent = `Showing ${filteredTodos.length} of ${todos.length} todos (${totalSubtasks} subtasks)`;
 }
 
-function checkEmpty() {
-  const totalSubtasks = todos.reduce(
-    (sum, todo) => sum + (todo.subtasks?.length || 0),
-    0
-  );
-  log.textContent = `Total todos: ${todos.length} (${totalSubtasks} subtasks)`;
-
+function checkEmpty(list) {
   const placeholder = tableBody.querySelector("tr[data-placeholder='true']");
-  if (todos.length === 0) {
+
+  if (!list || list.length === 0) {
     if (!placeholder) {
       const tr = document.createElement("tr");
       tr.dataset.placeholder = "true";
@@ -700,8 +695,7 @@ function checkEmpty() {
       td.className = "px-4 py-4 text-white text-center italic";
       td.textContent = "No task";
       tr.appendChild(td);
-      tableBody.innerHTML = "";
-      tableBody.appendChild(tr);
+      tableBody.appendChild(tr); // ✅ don't wipe tableBody here
     }
   } else {
     if (placeholder) placeholder.remove();
