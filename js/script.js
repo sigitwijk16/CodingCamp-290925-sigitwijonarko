@@ -111,7 +111,6 @@ function addTodoRow(todo) {
     removeSubtaskRows(todo.id);
     removeSubtaskForm(todo.id);
     saveTodos();
-    checkEmpty();
   };
 
   actionContainer.append(addSubtaskBtn, editBtn, completeBtn, deleteBtn);
@@ -119,14 +118,11 @@ function addTodoRow(todo) {
   row.append(task, dueDate, status, actions);
   tableBody.appendChild(row);
 
-  // Render existing subtasks
   if (todo.subtasks && todo.subtasks.length > 0) {
     todo.subtasks.forEach((subtask) => {
       addSubtaskRow(subtask, todo.id, todo.task);
     });
   }
-
-  checkEmpty();
 }
 
 function enterEditMode(
@@ -670,7 +666,7 @@ function renderAll() {
       : todos.filter((t) => t.status === currentFilter);
 
   if (filteredTodos.length === 0) {
-    checkEmpty(filteredTodos);
+    checkEmpty();
     return;
   }
 
@@ -682,14 +678,19 @@ function renderAll() {
   );
   log.textContent = `Showing ${filteredTodos.length} of ${todos.length} todos (${totalSubtasks} subtasks)`;
 
-  checkEmpty(filteredTodos);
+  checkEmpty();
 }
 
-function checkEmpty(list) {
+function checkEmpty() {
   const placeholder = tableBody.querySelector("tr[data-placeholder='true']");
   if (placeholder) placeholder.remove();
 
-  if (!list || list.length === 0) {
+  const filteredTodos =
+    currentFilter === "all"
+      ? todos
+      : todos.filter((t) => t.status === currentFilter);
+
+  if (filteredTodos.length === 0) {
     const tr = document.createElement("tr");
     tr.dataset.placeholder = "true";
     const td = document.createElement("td");
