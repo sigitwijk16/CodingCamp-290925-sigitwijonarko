@@ -64,6 +64,7 @@ todoForm.addEventListener("submit", (event) => {
 
   todoInput.value = "";
   dateInput.value = "";
+  dateLabel.classList.remove("hidden");
 });
 
 function addTodoRow(todo) {
@@ -487,6 +488,7 @@ function toggleSubtaskForm(parentId) {
     e.preventDefault();
     const taskInput = form.querySelector('input[name="subtask"]');
     const dateInput = form.querySelector('input[name="subtask-date"]');
+    const subtaskDateLabel = form.querySelector("label");
 
     if (!taskInput.value.trim()) return;
 
@@ -505,6 +507,8 @@ function toggleSubtaskForm(parentId) {
 
     taskInput.value = "";
     dateInput.value = "";
+
+    subtaskDateLabel.classList.remove("hidden");
   };
 
   const truncatedTask =
@@ -513,19 +517,42 @@ function toggleSubtaskForm(parentId) {
       : parentTodo.task;
 
   form.innerHTML = `
-    <input name="subtask" type="text" placeholder="Add subtask for ${truncatedTask}"
-      class="flex-1 border border-white rounded-lg p-2 px-4 text-white bg-transparent placeholder-gray-200" />
+  <input name="subtask" type="text" placeholder="Add subtask for ${truncatedTask}"
+    class="flex-1 border border-white rounded-lg p-2 px-4 text-white bg-transparent placeholder-gray-200" />
+
+  <div class="relative flex-1">
     <input name="subtask-date" type="date"
-      class="border border-white rounded-lg p-2 px-4 text-white bg-transparent" />
-    <button type="submit"
-      class="border border-white rounded-lg px-4 py-2 bg-[#f72585] text-white font-bold hover:bg-pink-600 transition">
-      ＋
-    </button>
-    <button type="button" onclick="this.closest('tr').remove(); activeSubtaskForm = null;"
-      class="border border-white rounded-lg px-4 py-2 bg-gray-500 text-white hover:bg-gray-600 transition">
-      Cancel
-    </button>
-  `;
+      class="w-full border border-white rounded-lg p-2 px-4 text-white peer" />
+    <label class="block md:hidden absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 pointer-events-none transition-all">
+      mm/dd/yyyy
+    </label>
+    <svg class="w-5 h-5 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-white"
+      xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z" />
+    </svg>
+  </div>
+
+  <button type="submit"
+    class="border border-white rounded-lg px-4 py-2 bg-[#f72585] text-white font-bold hover:bg-pink-600 transition">
+    ＋
+  </button>
+  <button type="button" onclick="this.closest('tr').remove(); activeSubtaskForm = null;"
+    class="border border-white rounded-lg px-4 py-2 bg-gray-500 text-white hover:bg-gray-600 transition">
+    Cancel
+  </button>
+`;
+
+  const subtaskDateInput = form.querySelector('input[name="subtask-date"]');
+  const subtaskDateLabel = form.querySelector("label");
+
+  subtaskDateInput.addEventListener("input", () => {
+    if (subtaskDateInput.value) {
+      subtaskDateLabel.classList.add("hidden");
+    } else {
+      subtaskDateLabel.classList.remove("hidden");
+    }
+  });
 
   formCell.appendChild(form);
   formRow.appendChild(formCell);
