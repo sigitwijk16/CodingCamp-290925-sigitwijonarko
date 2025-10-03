@@ -94,9 +94,10 @@ const updateStatusBadge = (el, status) => {
 
 const updateCompleteBtn = (btn, status) => {
   btn.className =
-    status === "Completed"
+    (status === "Completed"
       ? "bg-red-500 hover:bg-red-600 text-white p-2 rounded-lg"
-      : "bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg";
+      : "bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg") +
+    " complete-btn";
   btn.innerHTML = status === "Completed" ? ICONS.close : ICONS.check;
 };
 
