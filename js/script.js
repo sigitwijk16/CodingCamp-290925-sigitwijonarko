@@ -8,10 +8,12 @@ const DOM = {
   dateLabel: document.getElementById("date-label"),
   todoInput: document.getElementById("todo"),
   dateInput: document.getElementById("date"),
+  searchField: document.getElementById("search"),
 };
 
 let todos = [];
 let currentFilter = "all";
+let searchFilter = "";
 let activeSubtaskForm = null;
 let activeEditRow = null;
 
@@ -482,9 +484,21 @@ const renderAll = () => {
     currentFilter === "all"
       ? todos
       : todos.filter((t) => t.status === currentFilter);
-  filtered.forEach(addTodoRow);
-  checkEmpty();
-  updateLog();
+
+  if (searchFilter !== "") {
+    const lowerCaseSearchFilter = searchFilter.toLowerCase();
+    const searchedData = filtered.filter((item) => {
+      return item.task.toLowerCase().includes(lowerCaseSearchFilter);
+    });
+
+    searchedData.forEach(addTodoRow);
+    checkEmpty();
+    updateLog();
+  } else {
+    filtered.forEach(addTodoRow);
+    checkEmpty();
+    updateLog();
+  }
 };
 
 const checkEmpty = () => {
@@ -493,23 +507,40 @@ const checkEmpty = () => {
   );
   if (placeholder) placeholder.remove();
 
-  const filtered =
+  let filtered =
     currentFilter === "all"
       ? todos
       : todos.filter((t) => t.status === currentFilter);
 
+  if (searchFilter) {
+    const lower = searchFilter.toLowerCase();
+    filtered = filtered.filter((t) => t.task.toLowerCase().includes(lower));
+  }
+
   if (!filtered.length) {
-    const messages = {
-      all: "No tasks",
-      Pending: "No pending tasks",
-      Completed: "No completed tasks",
-    };
-    DOM.tableBody.innerHTML = `<tr data-placeholder="true"><td colspan="4" class="px-4 py-4 text-white text-center italic">${messages[currentFilter]}</td></tr>`;
+    let message = "";
+    if (searchFilter) {
+      message = `No tasks found for "${searchFilter}"`;
+    } else {
+      const messages = {
+        all: "No tasks",
+        Pending: "No pending tasks",
+        Completed: "No completed tasks",
+      };
+      message = messages[currentFilter];
+    }
+
+    DOM.tableBody.innerHTML = `<tr data-placeholder="true"><td colspan="4" class="px-4 py-4 text-white text-center italic">${message}</td></tr>`;
   }
 };
 
 DOM.filterSelect.addEventListener("change", () => {
   currentFilter = DOM.filterSelect.value;
+  renderAll();
+});
+
+DOM.searchField.addEventListener("input", () => {
+  searchFilter = DOM.searchField.value.trim();
   renderAll();
 });
 
