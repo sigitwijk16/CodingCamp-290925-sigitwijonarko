@@ -61,7 +61,28 @@ const updateLog = () => {
     (sum, t) => sum + (t.subtasks?.length || 0),
     0
   );
-  DOM.log.textContent = `Total todos: ${todos.length} (${totalSubtasks} subtasks)`;
+  const filtered =
+    currentFilter === "all"
+      ? todos
+      : todos.filter((t) => t.status === currentFilter);
+  const filteredSubtasks = filtered.reduce(
+    (sum, t) => sum + (t.subtasks?.length || 0),
+    0
+  );
+
+  if (currentFilter === "all") {
+    DOM.log.textContent = `Total: ${todos.length} task${
+      todos.length !== 1 ? "s" : ""
+    } (${totalSubtasks} subtask${totalSubtasks !== 1 ? "s" : ""})`;
+  } else {
+    DOM.log.textContent = `Showing ${
+      filtered.length
+    } ${currentFilter.toLowerCase()} task${
+      filtered.length !== 1 ? "s" : ""
+    } of ${todos.length} total (${filteredSubtasks} subtask${
+      filteredSubtasks !== 1 ? "s" : ""
+    })`;
+  }
 };
 
 const updateStatusBadge = (el, status) => {
@@ -462,6 +483,7 @@ const renderAll = () => {
       : todos.filter((t) => t.status === currentFilter);
   filtered.forEach(addTodoRow);
   checkEmpty();
+  updateLog();
 };
 
 const checkEmpty = () => {
