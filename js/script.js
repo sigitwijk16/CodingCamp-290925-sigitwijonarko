@@ -3,6 +3,9 @@ const log = document.getElementById("log");
 const tableBody = document.getElementById("table-body");
 const deleteAllBtn = document.getElementById("delete-all");
 const filterSelect = document.getElementById("filter");
+const datePicker = document.getElementById("date");
+const dateLabel = document.getElementById("date-label");
+
 let todos = [];
 let currentFilter = "all";
 let activeSubtaskForm = null;
@@ -11,6 +14,14 @@ let activeEditRow = null;
 filterSelect.addEventListener("change", () => {
   currentFilter = filterSelect.value;
   renderAll();
+});
+
+datePicker.addEventListener("input", () => {
+  if (datePicker.value) {
+    dateLabel.classList.add("hidden");
+  } else {
+    dateLabel.classList.remove("hidden");
+  }
 });
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -33,6 +44,7 @@ todoForm.addEventListener("submit", (event) => {
   const todoInput = document.getElementById("todo");
   const dateInput = document.getElementById("date");
   if (!todoInput.value.trim()) return;
+
   const todoObj = {
     id: Date.now(),
     task: todoInput.value.trim(),

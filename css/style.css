@@ -41,3 +41,22 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   font-optical-sizing: auto;
   font-style: normal;
 }
+
+input[type="date"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  color: white;
+  border-radius: 0.5rem;
+  padding-right: 2.5rem;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  width: 2.5rem;
+  height: 100%;
+}
